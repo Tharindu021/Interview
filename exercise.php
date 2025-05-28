@@ -1,5 +1,5 @@
 <?php
-    function getAllSlices($people, $slices_per_person)
+    function getTotalSlices($people, $slices_per_person)
     {
         return $people*$slices_per_person;
     }
@@ -10,6 +10,7 @@
 
         foreach($packages as $name => $package)
         {
+            // round up to the nearest integer
             $cost = $package[0]*ceil($slices/$package[1]);
             $package_prices[$name] = $cost;
         }
@@ -29,14 +30,14 @@
     );
 
     // get the total slices for all peoples
-    $slices = getAllSlices(20,3);
+    $slices = getTotalSlices(20,3);
     print("Total Slices:" . $slices . "\n\n");
 
     // get the packages cost for slices
     $package_cost_array = getTotalCost($slices, $packages);
     //print the package details
     foreach ($package_cost_array as $name => $cost) {
-        print($name ." Package: $". $cost . "\n");
+        print($name. " Package: $" .$cost. "\n");
     }
 
     // get the minimum price package name
